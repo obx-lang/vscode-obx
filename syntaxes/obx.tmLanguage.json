@@ -1,0 +1,97 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "OBX",
+	"patterns": [
+		{"include": "#string"},
+		{"include": "#comment"},
+		{"include": "#constant"},
+		{"include": "#entity"},
+		{"include": "#keyword"}
+	],
+	"repository": {
+		"comment": {
+			"patterns": [
+				{"include": "#line"},
+				{"include": "#block"}
+			],
+			"repository": {
+				"block": {
+					"patterns": [{
+						"name": "comment.block.obx",
+						"begin": "\\(\\*",
+						"end": "\\*\\)",
+						"patterns": [
+							{"include": "#block"}
+						]
+					}]
+				}
+			}
+		},
+		"constant": {
+			"patterns": [
+				{"include": "#language"},
+				{"include": "#numeric"}
+			],
+			"repository": {
+				"language": {
+					"patterns": [{
+						"name": "constant.language.obx",
+						"match": "\\b(NIL|FALSE|TRUE)\\b"
+					}]
+				},
+				"numeric": {
+					"patterns": [{
+						"name": "constant.numeric.obx",
+						"match": "\\b([0-9]|[1-9][0-9_]*)(\\.[0-9][0-9_]*([Ee][+-]?[0-9]+)?)?\\b"
+					}, {
+						"name": "constant.numeric.obx",
+						"match": "\\b[0-9][0-9A-F]*(H|R|X)\\b"
+					}]
+				}
+			}
+		},
+		"entity": {
+			"patterns": [{
+				"match": "\\b(END|MODULE|PROCEDURE)\\b\\s+([[:alpha:]]\\w*)",
+				"captures": {
+					"1": {"name": "keyword.control.obx"},
+					"2": {"name": "entity.name.function.obx"}
+				}
+			}, {
+				"match": "(OF|TO)\\s+([[:alpha:]]\\w*)",
+				"captures": {
+					"1": {"name": "keyword.other.obx"},
+					"2": {"name": "entity.other.inherited-class"}
+				}
+			}, {
+				"match": "(RECORD)\\s+\\(([[:alpha:]]\\w*)\\)",
+				"captures": {
+					"1": {"name": "keyword.control.obx"},
+					"2": {"name": "entity.other.inherited-class"}
+				}
+			}]
+		},
+		"keyword": {
+			"patterns": [{
+				"name": "keyword.control.obx",
+				"match": "\\b(BEGIN|DO|END|IF|MODULE|PROCEDURE|RETURN|THEN|WHILE)\\b"
+			}, {
+				"name": "keyword.operator.obx",
+				"match": "\\b(DIV|IN|IS|MOD)\\b|[-+^*=/#~<$>.,;|:()()\\[\\]{}]"
+			}, {
+				"name": "keyword.other.obx",
+				"match": "\\b(ARRAY|BOOLEAN|BYTE|CONST|IMPORT|INTEGER|OF|POINTER|REAL|RECORD|SET|TO|TYPE|VAR)\\b"
+			}]
+		},
+		"string": {
+			"patterns": [{
+				"name": "string.quoted.double.obx",
+				"match": "\"[^\"]*\""
+			}, {
+				"name": "string.quoted.single.obx",
+				"match": "'(''|[^'])*'"
+			}]
+		}
+	},
+	"scopeName": "source.obx"
+}
