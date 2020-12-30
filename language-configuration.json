@@ -1,6 +1,6 @@
 {
     "comments": {
-        "blockComment": [ "(*", "*)" ]
+        "blockComment": ["(*", "*)"]
     },
     "brackets": [
         ["{", "}"],
@@ -8,11 +8,13 @@
         ["(", ")"]
     ],
     "autoClosingPairs": [
-        ["{", "}"],
-        ["[", "]"],
-        ["(", ")"],
-        ["\"", "\""],
-        ["'", "'"]
+        {"open": "{", "close": "}"},
+        {"open": "[", "close": "]"},
+        {"open": "(", "close": ")"},
+        {"open": "`", "close": "'"},
+        {"open": "'",  "close": ",",   "notIn": ["string"]},
+        {"open": "\"", "close": "\"",  "notIn": ["string"]},
+        {"open": "(*", "close": " *)", "notIn": ["string"]}
     ],
     "surroundingPairs": [
         ["{", "}"],
@@ -20,5 +22,11 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    "folding": {
+        "markers": {
+            "start": "^\\s*PROCEDURE\\s+([A-Za-z][0-9A-Za-z_]*)",
+            "end": "^\\s*END\\s+([A-Za-z][0-9A-Za-z_]*)\\s*;"
+        }
+    }
 }
