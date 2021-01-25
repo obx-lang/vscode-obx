@@ -1,7 +1,7 @@
 {
     "name": "vscode-obx",
     "displayName": "vscode-obx",
-    "description": "Syntax highlighting for OBX language.",
+    "description": "Syntax highlighting for OBX language",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.43.0"
@@ -20,6 +20,10 @@
             "language": "obx",
             "scopeName": "source.obx",
             "path": "./syntaxes/obx.tmLanguage.json"
+        }],
+        "snippets": [{
+            "language": "obx",
+            "path": "./snippets.json"
         }]
     }
 }

@@ -11,7 +11,6 @@
 	"repository": {
 		"comment": {
 			"patterns": [
-				{"include": "#line"},
 				{"include": "#block"}
 			],
 			"repository": {

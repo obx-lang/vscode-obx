@@ -1,0 +1,40 @@
+{
+    "MODULE": {
+        "prefix": ["MODULE"],
+        "body": [
+            "MODULE ${1:${TM_FILENAME_BASE:/capitalize}};",
+            "",
+            "",
+            "BEGIN",
+            "\t$0",
+            "END $1."
+        ],
+        "description": "Define a module"
+    },
+
+    "PROCEDURE": {
+        "prefix": ["PROCEDURE"],
+        "body": [
+            "PROCEDURE $1 ($2);",
+            "BEGIN",
+            "\t$0",
+            "END $1;"
+        ],
+        "description": "Define a procedure"
+    },
+
+    "function PROCEDURE": {
+        "prefix": ["PROCEDURE:", "FUNCTION"],
+        "body": [
+            "PROCEDURE $1 ($2): $3;",
+            "VAR",
+            "\t${4:result}: $3;",
+            "BEGIN",
+            "\t$0",
+            "RETURN",
+            "\t$4",
+            "END $1;"
+        ],
+        "description": "Define a function procedure"
+    }
+}
